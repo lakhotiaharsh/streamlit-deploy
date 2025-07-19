@@ -1,0 +1,14 @@
+langchain
+langchain-openai
+langchain-core
+langchain_community
+docx2txt
+pypdf
+python-multipart
+streamlit
+langchain_text_splitters
+chromadb
+typing
+langchain_groq
+dotenv
+fastapi
