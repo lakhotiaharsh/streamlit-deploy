@@ -1,5 +1,9 @@
 import requests
 import streamlit as st
+import uuid
+
+if 'session_id' not in st.session_state:
+    st.session_state['session_id'] = str(uuid.uuid4())
 
 def get_api_response(question, session_id):
     headers = {
