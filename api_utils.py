@@ -27,7 +27,8 @@ def upload_document(file):
     print("Uploading file...")
     try:
         files = {"file": (file.name, file, file.type)}
-        response = requests.post("https://rag-1-h28e.onrender.com//upload-doc", files=files)
+        data = {"session_id": st.session_state.session_id}
+        response = requests.post("https://rag-1-h28e.onrender.com//upload-doc", files=files, data=data)
         if response.status_code == 200:
             return response.json()
         else:
@@ -39,7 +40,8 @@ def upload_document(file):
 
 def list_documents():
     try:
-        response = requests.get("https://rag-1-h28e.onrender.com//list-docs")
+        response = requests.get("https://rag-1-h28e.onrender.com//list-docs",
+                               params={"session_id": st.session_state.session_id})
         if response.status_code == 200:
             return response.json()
         else:
@@ -54,7 +56,7 @@ def delete_document(file_id):
         'accept': 'application/json',
         'Content-Type': 'application/json'
     }
-    data = {"file_id": file_id}
+    data = {"file_id": file_id, "session_id": st.session_state.session_id}
 
     try:
         response = requests.post("https://rag-1-h28e.onrender.com//delete-doc", headers=headers, json=data)
